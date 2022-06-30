@@ -3,6 +3,6 @@
 
 comment="${@:-"minor change"}"
 
-git add -A
+git add .
 git commit -m "$comment"
 git push
