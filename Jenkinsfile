@@ -16,12 +16,6 @@ pipeline {
                 sh "docker-compose -f $WORKSPACE/docker-compose.yaml up -d"
 
             }
-            // always run on shutdown.
-            post {
-                always {
-                    sh "docker compose -f $WORKSPACE/docker-compose.yaml down"
-                }
-            }
         }
     }
 }
