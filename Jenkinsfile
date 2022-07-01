@@ -15,13 +15,13 @@ pipeline {
                 sh "docker image rm -f flask1"
                 sh "docker build -t flask1 $WORKSPACE"
                 // Run flask docker container.
-                sh "docker-compose -f $WORKSPACE up -d"
+                sh "docker-compose -f $WORKSPACE/ up -d"
 
             }
             // always run on shutdown.
             post {
                 always {
-                    sh "docker compose -f $WORKSPACE down"
+                    sh "docker compose -f $WORKSPACE/ down"
                 }
             }
         }
