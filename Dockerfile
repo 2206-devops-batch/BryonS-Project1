@@ -12,5 +12,3 @@ RUN . .venv/bin/activate
 RUN pip install -r requirements.txt
 
 CMD [ "flask", "run", "--host=0.0.0.0" ]
-
-# COPY /var/lib/jenkins/workspace/project1_html_demo/app/* /usr/share/nginx/html
