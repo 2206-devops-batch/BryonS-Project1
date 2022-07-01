@@ -7,8 +7,10 @@ pipeline {
                 // Get some code from a GitHub repository
                 git 'https://github.com/2206-devops-batch/BryonS-Project1.git'
 
-                // docker stop
-                sh "docker stop flask1"
+                // stop and remove flask1 demo for change
+                sh "docker image rm -f flask1"
+                //build
+                sh "docker build -t flask1 $WORKSPACE/project_flask-demo"
                 // Run flask docker container.
                 sh "docker-compose -f $WORKSPACE/project1_flask_demo/www-docker-compose.yaml up"
                 // sh "cp /var/lib/jenkins/workspace/project1_html_setup/app/* /usr/share/nginx/html"
