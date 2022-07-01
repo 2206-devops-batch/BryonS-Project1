@@ -13,7 +13,7 @@ pipeline {
                 sh "docker system prune -af"
                 sh "docker build -t flask1 $WORKSPACE"
                 // Run flask docker container.
-                sh "docker-compose -d -f $WORKSPACE/www-docker-compose.yaml up"
+                sh "docker-compose -f $WORKSPACE/www-docker-compose.yaml up -d"
 
             }
         }
