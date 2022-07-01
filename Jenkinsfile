@@ -7,7 +7,10 @@ pipeline {
                 // Get some code from a GitHub repository
                 git 'https://github.com/2206-devops-batch/BryonS-Project1.git'
 
-                // Run Maven on a Unix agent.
+                // docker stop
+                sh "docker stop flask1"
+                // Run flask docker container.
+                sh "docker-compose -f $WORKSPACE/project1_flask_demo/www-docker-compose.yaml up"
                 // sh "cp /var/lib/jenkins/workspace/project1_html_setup/app/* /usr/share/nginx/html"
                 // sh "docker stop nginx1"
                 // sh "docker run --name nginx1 -d -p 81:80 -v /var/lib/jenkins/workspace/project1_html_demo/app:/usr/share/nginx/html:ro -d nginx"
