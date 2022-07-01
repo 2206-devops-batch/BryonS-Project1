@@ -12,10 +12,17 @@ pipeline {
                 //build
                 // sh "docker system prune -af"
                 // sh "docker image prune "
-                sh "docker build $WORKSPACE"
+                sh "docker image rm -f flask1"
+                sh "docker build -t flask1 $WORKSPACE"
                 // Run flask docker container.
-                sh "docker-compose -f $WORKSPACE/www-docker-compose.yaml up -d"
+                sh "docker-compose -f $WORKSPACE up -d"
 
+            }
+            // always run on shutdown.
+            post {
+                always {
+                    sh "docker compose -f $WORKSPACE down"
+                }
             }
         }
     }
