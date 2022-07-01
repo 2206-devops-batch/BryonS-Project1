@@ -10,8 +10,9 @@ pipeline {
                 // stop and remove flask1 demo for change
                 // sh "docker image rm -f flask1"
                 //build
-                sh "docker system prune -af"
-                sh "docker build -t flask1 $WORKSPACE"
+                // sh "docker system prune -af"
+                // sh "docker image prune "
+                sh "docker build $WORKSPACE"
                 // Run flask docker container.
                 sh "docker-compose -f $WORKSPACE/www-docker-compose.yaml up -d"
 
