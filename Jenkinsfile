@@ -8,7 +8,7 @@ pipeline {
                 git 'https://github.com/2206-devops-batch/BryonS-Project1.git'
 
                 // stop and remove flask1 demo for change
-                sh "docker image rm -f flask1"
+                // sh "docker image rm -f flask1"
                 //build
                 sh "docker build -t flask1 $WORKSPACE/project_flask-demo"
                 // Run flask docker container.
