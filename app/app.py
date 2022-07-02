@@ -2,10 +2,12 @@ from flask import Flask
 
 app = Flask(__name__)
 
-@app.route("/")
-def hello_world():
-    return "<p>Hello, DevOps World!</p>"
+def configure_routes(app):
 
-@app.route("/<name>")
-def hello_name(name):
-    return "<p>Hello, " + name + "!</p>"
+    @app.route("/")
+    def hello_world():
+        return "<p>Hello, World!</p>"
+
+    @app.route("/<name>")
+    def hello_name(name):
+        return "<p>Hello, " + name + "!</p>"
