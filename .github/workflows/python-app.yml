@@ -49,9 +49,9 @@ jobs:
         # Required mail server port:
         server_port: 465
         # Optional (recommended): mail server username:
-        username: ${{ MAIL_USERNAME }}
+        username: ${{ secrets.MAIL_USERNAME }}
         # Optional (recommended) mail server password:
-        password: ${{ MAIL_PASSWORD }}
+        password: ${{ secrets.MAIL_PASSWORD }}
         # Required mail subject:
         subject: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}
         # Required recipients' addresses:
