@@ -50,6 +50,10 @@ jobs:
                 "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. \n\n due to failure in run: _${{ github.run_id }}_.\n\n${{ github.sha }}"
                 }'
 
+    - name: show github options
+      run: |
+       echo "${{ toJson(github) }}"
+
     # - name: Send mail
     #   # if: ${{ failure() }}
     #   uses: dawidd6/action-send-mail@v3.6.1
