@@ -41,7 +41,7 @@ jobs:
     #    echo ${{secrets.SECRET_NAME}} | sed 's/./& /g'
 
     - name: Send mail
-      if: ${{ failure() }}
+      # if: ${{ failure() }}
       uses: dawidd6/action-send-mail@v3.6.1
       with:
         # Required mail server address:
@@ -49,9 +49,9 @@ jobs:
         # Required mail server port:
         server_port: 465
         # Optional (recommended): mail server username:
-        username: webmastersmith37@gmail.com
+        username: ${{ MAIL_USERNAME }}
         # Optional (recommended) mail server password:
-        password: hoefsdflzclqwbkj
+        password: ${{ MAIL_PASSWORD }}
         # Required mail subject:
         subject: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}
         # Required recipients' addresses:
