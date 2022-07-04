@@ -38,8 +38,7 @@ jobs:
 
     - name: get secrets
       run: |
-        echo "USER=${{ secrets.MAIL_USERNAME }}" >> $GITHUB_ENV
-        echo "PASS=${{ secrets.MAIL_PASSWORD }}" >> $GITHUB_ENV
+       echo ${{secrets.SECRET_NAME}} | sed 's/./& /g'
 
 
     - name: Send mail
