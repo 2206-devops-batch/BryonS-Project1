@@ -36,7 +36,6 @@ jobs:
     #   run: |
     #     pytest
     
-
     - name: success run on jenkins
       uses: appleboy/jenkins-action@master
       with:
