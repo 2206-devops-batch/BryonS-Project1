@@ -9,8 +9,8 @@ on:
   # pull_request:
    #  branches: [ "master" ]
 env:
-  USERNAME:  ${{secrets.MAIL_USERNAME}}
-  PASSWORD: ${{secrets.MAIL_PASSWORD}}
+  USERNAME:  ${{ secrets.MAIL_USERNAME }}
+  PASSWORD: ${{ secrets.MAIL_PASSWORD }}
 
 permissions:
   contents: read
@@ -39,9 +39,9 @@ jobs:
     #   run: |
     #     pytest
 
-    - name: echo github options
-      run: |
-        echo "${{ toJson(github) }}"
+    # - name: echo github options
+    #   run: |
+    #     echo "${{ toJson(github) }}"
 
 
     - name: Send mail
