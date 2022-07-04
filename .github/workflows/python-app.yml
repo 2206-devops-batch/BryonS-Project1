@@ -11,9 +11,6 @@ on:
 
 # permissions:
 #   contents: read
-env:
-  USERNAME:  ${{ secrets.MAIL_USERNAME }}
-  PASSWORD: ${{ secrets.MAIL_PASSWORD }}
 
 jobs:
   build:
@@ -47,6 +44,10 @@ jobs:
     - name: Send mail
       uses: dawidd6/action-send-mail@v3.6.1
       with:
+      env:
+        USERNAME:  ${{ secrets.MAIL_USERNAME }}
+        PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+
         # Required mail server address:
         server_address: smtp.gmail.com
         # Required mail server port:
