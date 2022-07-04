@@ -8,9 +8,9 @@ on:
     branches: [ "master" ]
   # pull_request:
    #  branches: [ "master" ]
-# env:
-#   USERNAME:  ${{secrets.MAIL_USERNAME}}
-#   PASSWORD: ${{secrets.MAIL_PASSWORD}}
+env:
+  USERNAME:  ${{secrets.MAIL_USERNAME}}
+  PASSWORD: ${{secrets.MAIL_PASSWORD}}
 
 permissions:
   contents: read
@@ -52,9 +52,9 @@ jobs:
         # Required mail server port:
         server_port: 465
         # Optional (recommended): mail server username:
-        username: webmastersmith37@gmail.com
+        username: $USERNAME
         # Optional (recommended) mail server password:
-        password: qacehdcczugddrkv
+        password: $PASSWORD
         # Required mail subject:
         subject: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}
         # Required recipients' addresses:
