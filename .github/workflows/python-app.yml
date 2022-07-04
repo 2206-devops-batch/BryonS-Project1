@@ -45,17 +45,17 @@ jobs:
       uses: dawidd6/action-send-mail@v3.6.1
       with:
       env:
-        USERNAME:  ${{ secrets.MAIL_USERNAME }}
-        PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+        USER:  ${{ secrets.MAIL_USERNAME }}
+        PASS: ${{ secrets.MAIL_PASSWORD }}
 
         # Required mail server address:
         server_address: smtp.gmail.com
         # Required mail server port:
         server_port: 465
         # Optional (recommended): mail server username:
-        username: $USERNAME
+        username: $USER
         # Optional (recommended) mail server password:
-        password: $PASSWORD
+        password: $PASS
         # Required mail subject:
         subject: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}
         # Required recipients' addresses:
