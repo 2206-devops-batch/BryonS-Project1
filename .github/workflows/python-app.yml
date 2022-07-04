@@ -43,11 +43,10 @@ jobs:
 
     - name: Send mail
       uses: dawidd6/action-send-mail@v3.6.1
+      env:
+        USER:  ${{ secrets.MAIL_USERNAME }}
+        PASS: ${{ secrets.MAIL_PASSWORD }}
       with:
-        env:
-          USER:  ${{ secrets.MAIL_USERNAME }}
-          PASS: ${{ secrets.MAIL_PASSWORD }}
-
         # Required mail server address:
         server_address: smtp.gmail.com
         # Required mail server port:
