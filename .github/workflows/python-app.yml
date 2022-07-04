@@ -49,7 +49,6 @@ jobs:
                 "title": "Issue created due to workflow failure: ${{ github.run_id }}",
                 "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. \n\n due to failure in run: _${{ github.run_id }}_.\n\n${{ github.sha }}"
                 }'
-        echo "${{ toJson(github) }}""
 
     # - name: Send mail
     #   # if: ${{ failure() }}
