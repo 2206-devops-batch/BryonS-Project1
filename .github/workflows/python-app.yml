@@ -1,7 +1,7 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-name: Python application
+name: Run Pytest for website errors
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    # - uses: actions/checkout@v3
     # - name: Set up Python 3.10
     #   uses: actions/setup-python@v3
     #   with:
@@ -39,44 +39,54 @@ jobs:
     # - name: get secrets
     #   run: |
     #    echo ${{secrets.SECRET_NAME}} | sed 's/./& /g'
+    - name: curl test
+      run: |
+        curl --request POST \
+              --url https://api.github.com/repos/${{ github.repository }}/issues \
+              --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+              --header 'content-type: application/json' \
+              --data '{
+                "title": "Issue created due to workflow fialure: ${{ github.run_id }}",
+                "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. \n\n due to failure in run: _${{ github.run_id }}_."
+                }'
 
-    - name: Send mail
-      # if: ${{ failure() }}
-      uses: dawidd6/action-send-mail@v3.6.1
-      with:
-        # Required mail server address:
-        server_address: smtp.gmail.com
-        # Required mail server port:
-        server_port: 465
-        # Optional (recommended): mail server username:
-        username: ${{ secrets.MAIL_USERNAME }}
-        # Optional (recommended) mail server password:
-        password: ${{ secrets.MAIL_PASSWORD }}
-        # Required mail subject:
-        subject: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}
-        # Required recipients' addresses:
-        to: webmastersmith37@gmail.com
-        # Required sender full name (address can be skipped):
-        from: Bryon Smith # <user@example.com>
-        # Optional whether this connection use TLS (default is true if server_port is 465)
-        secure: true
-        # Optional plain body:
-        body: Build job of ${{ github.repository }} completed successfully!
-        # Optional HTML body read from file:
-        # html_body: file://README.html
-        # Optional carbon copy recipients:
-        # cc: kyloren@example.com,leia@example.com
-        # Optional blind carbon copy recipients:
-        # bcc: r2d2@example.com,hansolo@example.com
-        # Optional recipient of the email response:
-        # reply_to: luke@example.com
-        # Optional Message ID this message is replying to:
-        # in_reply_to: <random-luke@example.com>
-        # Optional unsigned/invalid certificates allowance:
-        ignore_cert: true
-        # Optional converting Markdown to HTML (set content_type to text/html too):
-        convert_markdown: true
-        # Optional attachments:
-        # attachments: attachments.zip,git.diff,./dist/static/*.js
-        # Optional priority: 'high', 'normal' (default) or 'low'
-        priority: low
+    # - name: Send mail
+    #   # if: ${{ failure() }}
+    #   uses: dawidd6/action-send-mail@v3.6.1
+    #   with:
+    #     # Required mail server address:
+    #     server_address: smtp.gmail.com
+    #     # Required mail server port:
+    #     server_port: 465
+    #     # Optional (recommended): mail server username:
+    #     username: ${{ secrets.MAIL_USERNAME }}
+    #     # Optional (recommended) mail server password:
+    #     password: ${{ secrets.MAIL_PASSWORD }}
+    #     # Required mail subject:
+    #     subject: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}
+    #     # Required recipients' addresses:
+    #     to: webmastersmith37@gmail.com
+    #     # Required sender full name (address can be skipped):
+    #     from: Bryon Smith # <user@example.com>
+    #     # Optional whether this connection use TLS (default is true if server_port is 465)
+    #     secure: true
+    #     # Optional plain body:
+    #     body: Build job of ${{ github.repository }} completed successfully!
+    #     # Optional HTML body read from file:
+    #     # html_body: file://README.html
+    #     # Optional carbon copy recipients:
+    #     # cc: kyloren@example.com,leia@example.com
+    #     # Optional blind carbon copy recipients:
+    #     # bcc: r2d2@example.com,hansolo@example.com
+    #     # Optional recipient of the email response:
+    #     # reply_to: luke@example.com
+    #     # Optional Message ID this message is replying to:
+    #     # in_reply_to: <random-luke@example.com>
+    #     # Optional unsigned/invalid certificates allowance:
+    #     ignore_cert: true
+    #     # Optional converting Markdown to HTML (set content_type to text/html too):
+    #     convert_markdown: true
+    #     # Optional attachments:
+    #     # attachments: attachments.zip,git.diff,./dist/static/*.js
+    #     # Optional priority: 'high', 'normal' (default) or 'low'
+    #     priority: low
