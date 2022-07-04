@@ -41,7 +41,6 @@ jobs:
 
     - name: echo github options
       run: |
-        # echo "${{ toJson(github) }}"
         echo "${{ secrets.MAIL_USERNAME }}"
 
 
