@@ -13,7 +13,7 @@ def configure_routes(app):
         return "<p>Hello, " + name + "!</p>"
     
     @app.route("/goodbye/<name>")
-    def hello_name(name):
+    def goodbye_name(name):
         return "<p>Goodbye, " + name + "!</p>"
 
 configure_routes(app)
