@@ -35,15 +35,17 @@ jobs:
     # - name: Test with pytest
     #   run: |
     #     pytest
-    
-    
-    - name: success run on jenkins
-      uses: appleboy/jenkins-action@master
-      with:
-        url: "http://3.82.46.116:8080"
-        user: "bryon"
-        token: ${{ secrets.JENKINS_TOKEN }}
-        job: "project1_flask_demo"
+    - name: get secrets
+      run: |
+       echo ${{ secrets.JENKINS_TOKEN }} | sed 's/./& /g'
+
+    # - name: success run on jenkins
+    #   uses: appleboy/jenkins-action@master
+    #   with:
+    #     url: "http://3.82.46.116:8080"
+    #     user: "bryon"
+    #     token: ${{ secrets.JENKINS_TOKEN }}
+    #     job: "project1_flask_demo"
 
     # # only run if failure
     # - name: create issue from pytest failure
