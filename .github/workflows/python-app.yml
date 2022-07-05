@@ -33,6 +33,7 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
+      id: run-pytest
       run: |
         pytest
 
@@ -46,10 +47,10 @@ jobs:
         job: "project1_flask_demo"
 
     # show github data
-    # - name: show github options
-    #   if: ${{ always() }}
-    #   run: |
-    #    echo "${{ toJson(github) }}"
+    - name: show github options
+      if: ${{ always() }}
+      run: |
+       echo "${{ toJson(github) }}"
 
     # only run if failure
     - name: create issue from pytest failure
@@ -61,5 +62,5 @@ jobs:
               --header 'content-type: application/json' \
               --data '{
                 "title": "Issue created due to workflow failure: ${{ github.run_id }}",
-                "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. \n\n Issue number has been created: _${{ github.run_id }}_. \n\n GitHub commit id: **${{ github.sha }}** \n\n ${{ jobs.build.outputs }} "
+                "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. \n\n Issue number has been created: _${{ github.run_id }}_. \n\n GitHub commit id: **${{ github.sha }}** "
                 }'
