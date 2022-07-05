@@ -61,5 +61,5 @@ jobs:
               --header 'content-type: application/json' \
               --data '{
                 "title": "Issue created due to workflow failure: ${{ github.run_id }}",
-                "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. \n\n An Issue has been created: _${{ github.run_id }}_. \n\n Issue Link ${{ github.issues_url }} \n\n GitHub commit id: **${{ github.sha }}** "
+                "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. \n\n An Issue has been created: _${{ github.run_id }}_. \n\n Issue Link ${{ github.event.repository.issues_url }} \n\n GitHub commit id: **${{ github.sha }}** "
                 }'
