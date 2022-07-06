@@ -47,10 +47,10 @@ jobs:
         job: "project1_flask_demo"
 
     # show github data
-    - name: show github options
-      if: ${{ always() }}
-      run: |
-       echo "${{ toJson(github) }}"
+    # - name: show github options
+    #   if: ${{ always() }}
+    #   run: |
+    #    echo "${{ toJson(github) }}"
 
     # only run if failure
     - name: create issue from pytest failure
